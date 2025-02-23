@@ -9,13 +9,16 @@ import jwt
 from datetime import datetime, timedelta
 from dotenv import load_dotenv
 import os
+import uvicorn
 
 load_dotenv()
 # Secret Key & JWT Settings
 SECRET_KEY = "your_secret_key_here"  # Change this to a strong secret
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30  # Token expiration time
-
+if __name__ == "__main__":
+    port = int(os.getenv("PORT", 8000))
+    uvicorn.run("main:app", host="0.0.0.0", port=port, reload=True)
 # Database Configuration
 DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)

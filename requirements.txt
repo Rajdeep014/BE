@@ -6,3 +6,5 @@ passlib
 bcrypt
 pyjwt
 python-dotenv
+psycopg2-binary
+
