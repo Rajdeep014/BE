@@ -7,14 +7,17 @@ from pydantic import BaseModel, EmailStr
 from passlib.context import CryptContext
 import jwt
 from datetime import datetime, timedelta
+from dotenv import load_dotenv
+import os
 
+load_dotenv()
 # Secret Key & JWT Settings
 SECRET_KEY = "your_secret_key_here"  # Change this to a strong secret
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30  # Token expiration time
 
 # Database Configuration
-DATABASE_URL = "postgresql://postgres:Plmoknijb015@localhost:5432/todo_db"
+DATABASE_URL = os.getenv("DATABASE_URL")
 engine = create_engine(DATABASE_URL)
 SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
 Base = declarative_base()
